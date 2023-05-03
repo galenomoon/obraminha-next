@@ -6,7 +6,7 @@ export default function Header({ title = "Obraminha - Encontre os melhores prest
   return (
     <Head>
       <title>
-        {subtitle ? `Obraminha | ${subtitle}` : title}
+        {subtitle ? `${subtitle} | Obraminha` : title}
       </title>
       <meta name="description" content={description || "Encontre os melhores prestadores de serviços para a sua obra!"} />
     </Head>

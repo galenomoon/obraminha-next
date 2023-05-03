@@ -1,0 +1,21 @@
+<svg width="4051" height="922" viewBox="0 0 4051 922" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_154_641)">
+<rect width="4050.08" height="922" transform="translate(0.078125)" fill="url(#paint0_linear_154_641)"/>
+<ellipse cx="2561.5" cy="761.721" rx="359.288" ry="353.652" transform="rotate(-69.0637 2561.5 761.721)" fill="#CCCCCC" fill-opacity="0.1"/>
+<ellipse cx="1341.12" cy="1032.79" rx="140.362" ry="138.161" transform="rotate(-60 1341.12 1032.79)" fill="#CCCCCC" fill-opacity="0.1"/>
+<ellipse cx="1860.49" cy="-0.0456085" rx="246.646" ry="242.222" transform="rotate(-90 1860.49 -0.0456085)" fill="#CCCCCC" fill-opacity="0.1"/>
+<ellipse cx="3262.43" cy="-93.4841" rx="246.646" ry="242.222" transform="rotate(-90 3262.43 -93.4841)" fill="#CCCCCC" fill-opacity="0.1"/>
+<ellipse cx="4050.29" cy="595.273" rx="246.646" ry="242.222" transform="rotate(-90 4050.29 595.273)" fill="#CCCCCC" fill-opacity="0.1"/>
+<ellipse cx="336.714" cy="57.6003" rx="316.326" ry="310.796" transform="rotate(-90 336.714 57.6003)" fill="#CCCCCC" fill-opacity="0.1"/>
+<ellipse cx="915.885" cy="666.06" rx="175.86" ry="172.542" transform="rotate(-90 915.885 666.06)" fill="#CCCCCC" fill-opacity="0.1"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_154_641" x1="338" y1="922" x2="686.745" y2="-602.919" gradientUnits="userSpaceOnUse">
+<stop stop-color="#379A83"/>
+<stop offset="1" stop-color="#39978A"/>
+</linearGradient>
+<clipPath id="clip0_154_641">
+<rect width="4050.08" height="922" fill="white" transform="translate(0.078125)"/>
+</clipPath>
+</defs>
+</svg>
