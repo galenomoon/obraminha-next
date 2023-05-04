@@ -21,12 +21,12 @@ export default function Auth({ is_login }) {
       <Image src={wave} alt='top wave' className='md:hidden sm:absolute top-0 w-full object-cover' />
       <Image src={wave} alt='top wave' className='md:hidden sm:absolute bottom-0 rotate-180 w-full object-cover' />
       <div className="sm:hidden md:flex flex-col items-center justify-center w-full h-full bg-cover animate-slide-in-r">
-        <Image fill src={background} alt="background" className='dark:hidden block object-cover' />
-        <Image fill src={dark_background} alt="dark-background" className='hidden dark:block object-cover' />
-        <p className='text-4xl font-bold text-typography-secondary'>
+        <Image fill src={background} alt="background" className='dark:hidden block z-[0] object-cover' />
+        <Image fill src={dark_background} alt="dark-background" className='hidden dark:block z-[0] object-cover' />
+        <p className='text-4xl font-bold text-typography-secondary z-[1]'>
           {is_login ? "Bem vindo de volta!" : "Olá, seja bem vindo!"}
         </p>
-        <p className='text-2xl font-light text-typography-secondary'>
+        <p className='text-2xl font-light text-typography-secondary z-[1]'>
           Seu pedido é uma obra!
         </p>
       </div>

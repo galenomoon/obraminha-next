@@ -16,21 +16,15 @@ import { CgSpinner } from 'react-icons/cg';
 import { AiOutlineUser } from 'react-icons/ai'
 import { MdArrowBack, MdOutlineMail } from 'react-icons/md'
 
-//redux
-// import { useDispatch, useSelector } from 'react-redux'
-// import { updateUser } from '../../store/actions/users'
-
 //context
-// import { AuthContext } from '../../routes/ApplicationRoutes'
+import { AppContext } from '@/pages/_app'
 
 export default function AuthForm({ is_login, is_modal }) {
-  const { push: navigate} = useRouter()
-  // const dispatch = useDispatch()
-  // const { setAuthModal } = useContext(AuthContext)
+  const { push: navigate } = useRouter()
+  const { setCurrentUser, setLoginModal } = useContext(AppContext)
   const [is_loading, setIsLoading] = React.useState(false)
   const [is_login_form, setIsLoginForm] = React.useState(is_login)
   const [forget_password, setForgetPassword] = React.useState(false)
-  // const after_login = useSelector(state => state.after_login?.after_login)
   const [user, setUser] = React.useState({
     first_name: '',
     last_name: '',
@@ -88,17 +82,17 @@ export default function AuthForm({ is_login, is_modal }) {
       if (!is_login_form) {
         api_client.post('/login/', user).then(({ data }) => {
           localStorage.setItem('token', data?.token?.access)
-          dispatch(updateUser(data))
+          setCurrentUser(data)
         })
       }
       else {
         localStorage.setItem('token', data?.token?.access)
-        dispatch(updateUser(data))
+        setCurrentUser(data)
       }
 
       toast.success('Usuário logado com sucesso')
 
-      return is_modal ? setAuthModal(false) : navigate(after_login?.path || '/')
+      return is_modal ? setLoginModal(false) : navigate('/')
     }).catch(({ response }) => {
       if (response) {
         const { password, email, message } = response.data

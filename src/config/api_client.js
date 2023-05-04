@@ -3,12 +3,11 @@ import { parseCookies } from "nookies";
 const { token } = parseCookies()
 
 const api_client = axios.create({
-  baseURL: process.env.REACT_APP_API_ENDPOINT,
+  baseURL: process.env.REACT_APP_API_URL,
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Accept': '*/*'
+    Accept: "application/json",
   }
 })
 
