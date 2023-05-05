@@ -5,12 +5,12 @@ import ObraMinhaHomePlusSvg from './ObraMinhaHomePlus.svg'
 import ObraMinhaHomePlusDarkSvg from './ObraMinhaHomePlusDark.svg'
 
 //context
-import { ThemeContext } from '../../../routes/ApplicationRoutes'
+import { AppContext } from '@/pages/_app'
 
 const ObraMinhaHomePlus = ({ size = 24 }) => {
-  const { isDarkTheme } = React.useContext(ThemeContext)
+  const { is_dark_theme } = React.useContext(AppContext)
 
-  const ObraMinhaHomePlus = isDarkTheme ? ObraMinhaHomePlusDarkSvg : ObraMinhaHomePlusSvg
+  const ObraMinhaHomePlus = is_dark_theme ? ObraMinhaHomePlusDarkSvg : ObraMinhaHomePlusSvg
 
   return <img src={ObraMinhaHomePlus} alt='Obra Minha Home Plus' width={size} height={size} />
 }

@@ -114,7 +114,7 @@ export default function AuthForm({ is_login, is_modal }) {
 
   return (
     <>
-      <Logo is_modal className={`w-[200px] ${is_modal ? "cursor-default" : "absolute"} sm:top-[120px] md:top-8 sm:self-center md:right-8`} />
+      <Logo is_modal={is_modal} className={`w-[200px] ${is_modal ? "cursor-default" : "absolute"} sm:top-[120px] md:top-8 sm:self-center md:right-8`} />
       {forget_password ?
         <button onClick={() => setForgetPassword(false)} className='text-typography-danger group duration-100 flex gap-1 items-center justify-center font-bold text-xl absolute sm:top-[264px] md:top-8 sm:self-center md:left-8'>
           <MdArrowBack size={22} className="group-hover:-translate-x-2 duration-100" />

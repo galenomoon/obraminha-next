@@ -13,7 +13,7 @@ import AuthForm from '@/components/Auth/Form';
 export default function Auth({ is_login }) {
 
   useEffect(() => {
-    // localStorage.removeItem('token')
+    localStorage.removeItem('token')
   }, [])
 
   return (
@@ -30,7 +30,7 @@ export default function Auth({ is_login }) {
           Seu pedido é uma obra!
         </p>
       </div>
-      <div className="flex flex-col items-center justify-center gap-8 h-full w-full animate-slide-in-l relative">
+      <div className="flex flex-col items-center justify-center gap-8 h-full w-full  relative">
         <AuthForm is_login={is_login} />
       </div>
     </div>
