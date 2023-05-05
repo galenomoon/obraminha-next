@@ -110,7 +110,7 @@ export default function Navbar() {
               <Button to='/entrar' className='!py-[12px] !w-[150px] md:block sm:hidden flex items-center justify-center text-center'>
                 Entrar
               </Button>
-              <Button to='/cadastrar' className='!py-[12px] !w-[150px] md:block sm:hidden flex items-center justify-center text-center text-background-secondary border-2 border-background-secondary bg-transparent'>
+              <Button to='/cadastrar' className='!py-[12px] !text-typography-primary !w-[150px] md:block sm:hidden flex items-center justify-center text-center border-2 border-background-secondary bg-transparent'>
                 Cadastrar
               </Button>
               <button onClick={() => switchTheme()}>
@@ -185,12 +185,11 @@ export default function Navbar() {
     </>
 }
 
-export function Menu({ show, close, logOut }) {
-  const { push: navigate } = useRouter()
-  const { switchTheme, is_dark_theme } = useContext(ThemeContext)
+export function Menu({ show, close }) {
+  const { switchTheme, is_dark_theme, destroy_session } = useContext(AppContext)
 
   return (show &&
-    <div onBlur={() => close()} className='absolute top-14 right-0 overflow-hidden w-[300px] h-fit border-[2px] border-typography-light/60 bg-background-optional dark:bg-dark-background-light z-[50] rounded-2xl flex flex-col' >
+    <div onBlur={() => close()} className='absolute top-14 right-0 overflow-hidden w-[300px] h-fit border-[2px] border-typography-light/60 bg-background-optional dark:bg-dark-background-light dark:text-dark-typography-base text-typography-base z-[50] rounded-2xl flex flex-col' >
       <button onClick={() => switchTheme()} className='flex w-full p-4 items-center gap-2 hover:bg-background-light hover:dark:bg-dark-background-base cursor-pointer'>
         <div className='flex items-center justify-center w-[50px]'>
           <Switch
@@ -212,7 +211,7 @@ export function Menu({ show, close, logOut }) {
         </div>
         <p>Editar Perfil</p>
       </Link>
-      <button onClick={() => [logOut(), navigate('/inicio')]} className='flex w-full p-4 items-center gap-2 hover:bg-background-light hover:dark:bg-dark-background-base cursor-pointer'>
+      <button onClick={() => destroy_session()} className='flex w-full p-4 items-center gap-2 hover:bg-background-light hover:dark:bg-dark-background-base cursor-pointer'>
         <div className='flex items-center justify-center w-[50px]'>
           <MdLogout size={30} className='text-typography-primary ' />
         </div>

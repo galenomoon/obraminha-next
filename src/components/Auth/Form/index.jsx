@@ -8,6 +8,7 @@ import Button from '../../../components/Button'
 //deeps
 import api_client from '../../../config/api_client'
 import { useRouter } from 'next/router'
+import { setCookie } from 'nookies'
 
 //styles
 import { BiLock } from 'react-icons/bi'
@@ -81,12 +82,12 @@ export default function AuthForm({ is_login, is_modal }) {
 
       if (!is_login_form) {
         api_client.post('/login/', user).then(({ data }) => {
-          localStorage.setItem('token', data?.token?.access)
+          setCookie(null, 'token', data?.token?.access)
           setCurrentUser(data)
         })
       }
       else {
-        localStorage.setItem('token', data?.token?.access)
+        setCookie(null, 'token', data?.token?.access)
         setCurrentUser(data)
       }
 

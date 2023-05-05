@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 //assets
 import Logo from '../Logo'
 
-export default function Header() {
+export default function Footer() {
   const { pathname } = useRouter()
 
   return pathname === "entrar" || pathname === "cadastrar" ? null :

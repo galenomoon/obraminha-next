@@ -1,10 +1,12 @@
+import Header from '@/components/Header'
 import React from 'react'
-// import Banner from '../../components/Banner/index';
+import Banner from '@/components/Banner';
 
 export default function Terms() {
   return (
     <div className='w-full h-full'>
-      {/* <Banner title="Termos de uso" link_to='/inicio' /> */}
+      <Header subtitle='Termos de uso' />
+      <Banner title="Termos de uso" link_to='/' />
       <div className='flex flex-col gap-4 text-typography-base dark:text-dark-typography-base p-8'>
         <h2 className='text-3xl'>Política Privacidade</h2>
         <p>A sua privacidade é importante para nós. É política do Obra Minha respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site <a href="https://obraminha.com">Obra Minha</a>, e outros sites que possuímos e operamos.</p>

@@ -7,7 +7,7 @@ export default function Button({ className, onClick = () => { }, children, to, n
       onClick={(e) => disabled ? {} : onClick(e)}
       href={disabled ? '#' : to}
       name={name}
-      className={`duration-100 ${className} ${disabled ? 'bg-gray-400 dark:bg-dark-background-light' : 'bg-background-secondary'} text-typography-secondary flex hover:opacity-90 items-center justify-center rounded-full px-5 py-4 w-[180px] uppercase`}
+      className={`duration-100 ${disabled ? 'bg-gray-400 dark:bg-dark-background-light' : 'bg-background-secondary'} text-typography-secondary flex hover:opacity-90 items-center justify-center rounded-full px-5 py-4 w-[180px] uppercase  ${className} `}
     >
       {children}
     </Link>
@@ -17,7 +17,7 @@ export default function Button({ className, onClick = () => { }, children, to, n
       disabled={disabled}
       name={name}
       onClick={(e) => disabled ? {} : onClick(e)}
-      className={`duration-100 ${className} ${disabled ? 'bg-gray-400 dark:bg-dark-background-light' : 'bg-background-secondary'} text-typography-secondary flex items-center justify-center rounded-full hover:opacity-90 py-3 w-[180px] uppercase`}
+      className={`duration-100 ${disabled ? 'bg-gray-400 dark:bg-dark-background-light' : 'bg-background-secondary'} text-typography-secondary flex items-center justify-center rounded-full hover:opacity-90 py-3 w-[180px] uppercase  ${className} `}
     >
       {children}
     </button>

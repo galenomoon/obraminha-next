@@ -1,5 +1,11 @@
 import React, { createContext, useEffect, useState } from 'react'
 
+
+// deeps
+import api_client from '@/config/api_client';
+import { useRouter } from 'next/router';
+import { parseCookies, destroyCookie } from "nookies";
+
 // styles
 import '@/styles/globals.css'
 import { Toaster } from 'react-hot-toast';
@@ -16,6 +22,7 @@ import Navbar from '@/components/NavBar';
 export const AppContext = createContext();
 
 export default function App({ Component, pageProps }) {
+  const { push } = useRouter()
   const [current_user, setCurrentUser] = useState(null)
   const [user_address, setUserAddress] = useState(null)
   const [is_dark_theme, setIsDarkTheme] = useState(false)
@@ -24,6 +31,7 @@ export default function App({ Component, pageProps }) {
   const context_value = {
     current_user,
     setCurrentUser,
+    destroy_session,
     user_address,
     setUserAddress,
     is_dark_theme,
@@ -41,6 +49,31 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     (is_dark_theme) ? localStorage.setItem('theme', 'dark') : localStorage.setItem('theme', 'light')
   }, [is_dark_theme])
+
+  useEffect(() => {
+    if (current_user) return
+    getCurrentUser()
+  }, [current_user])
+
+  function destroy_session() {
+    destroyCookie(undefined, 'token')
+    setCurrentUser(null)
+    push('/')
+  }
+
+  async function getCurrentUser() {
+    const { token } = parseCookies()
+
+    if (token) {
+      return await api_client.get('/current_user/').then(({ data }) => {
+        setCurrentUser(data)
+      })
+        .catch((error) => {
+          console.error(error)
+          destroyCookie(undefined, 'token')
+        })
+    }
+  }
 
   return (
     <AppContext.Provider value={context_value}>
