@@ -29,7 +29,7 @@ export default function Categories() {
 
   return (
     <div className="flex w-full min-h-screen h-fit flex-col overflow-hidden">
-      <Header subtitle={'Categorias'} />
+      <Header subtitle='Categorias' />
       <Banner title="O que você precisa?" subtitle='Pra construir o seu sonho?' />
       <div className='w-full h-full flex flex-col py-12 items-center md:gap-8 sm:gap-2'>
         <p className='md:text-5xl sm:text-3xl font-semibold mb-4'>
