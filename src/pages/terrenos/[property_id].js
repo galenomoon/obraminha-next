@@ -15,7 +15,6 @@ import ProposalForm from '@/components/ProposalForm';
 import Skeleton, { SkeletonText } from '@/components/Skeleton/index';
 
 //assets
-import Image from 'next/image';
 import not_found from '../../assets/not_found.svg'
 
 //styles
@@ -31,6 +30,7 @@ import { AppContext } from '../_app';
 
 export default function Property() {
   const { query } = useRouter()
+  console.log({query})
   const property_id = query?.property_id
   const { setLoginModal, current_user } = useContext(AppContext)
   const current_user_id = current_user?.id
@@ -45,7 +45,7 @@ export default function Property() {
 
   React.useEffect(() => {
     getProperty()
-  }, [])
+  }, [property_id])
 
   React.useEffect(() => {
     if (!send_proposal.is_loaded) {
@@ -60,6 +60,7 @@ export default function Property() {
   }, [is_alert_opened])
 
   async function getProperty() {
+    if (!property_id) return
     try {
       const { data: $property } = await api_client.get(`/properties/${property_id}/`)
       const { data: address } = await api_client.get(`/addresses/${$property?.address_id}/`)
@@ -114,7 +115,7 @@ export default function Property() {
                           Ver em tela cheia
                         </p>
                       </button>
-                      <Image
+                      <img
                         alt='property'
                         onError={e => e.target.src = not_found}
                         className='sm:w-full md:w-[40rem] h-[24rem] sm:rounded-none md:rounded-2xl object-cover'
@@ -139,7 +140,7 @@ export default function Property() {
                     {
                       is_loaded ?
                         property?.images?.map((image, index) => (
-                          <Image
+                          <img
                             onError={e => e.target.src = not_found}
                             key={index}
                             alt='property'

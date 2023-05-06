@@ -99,14 +99,14 @@ export default function App({ Component, pageProps }) {
           </div>
         </div>
         <Footer />
+        <Modal
+          show={login_modal?.show}
+          close={login_modal?.is_private_route ? null : () => setLoginModal(false)}
+          children={<AuthForm is_login is_modal />}
+          className="!overflow-y-auto !md:max-h-[90vh] !justify-start"
+        />
       </div>
       <Toaster position="top-right" />
-      <Modal
-        show={login_modal?.show}
-        close={login_modal?.is_private_route ? null : () => setLoginModal(false)}
-        children={<AuthForm is_login is_modal />}
-        className="!overflow-y-auto !md:max-h-[90vh] !justify-start"
-      />
     </AppContext.Provider>
   )
 }
