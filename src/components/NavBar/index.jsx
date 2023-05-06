@@ -205,11 +205,11 @@ export function Menu({ show, close }) {
         </div>
         <p>Tema {is_dark_theme ? "Escuro" : 'Claro'}</p>
       </button>
-      <Link href='/editar-perfil' className='flex w-full p-4 items-center gap-2 hover:bg-background-light hover:dark:bg-dark-background-base cursor-pointer'>
+      <Link href='/meu-perfil' className='flex w-full p-4 items-center gap-2 hover:bg-background-light hover:dark:bg-dark-background-base cursor-pointer'>
         <div className='flex items-center justify-center w-[50px]'>
           <FaUserCog size={30} className='text-typography-primary ' />
         </div>
-        <p>Editar Perfil</p>
+        <p>Meu Perfil</p>
       </Link>
       <button onClick={() => destroy_session()} className='flex w-full p-4 items-center gap-2 hover:bg-background-light hover:dark:bg-dark-background-base cursor-pointer'>
         <div className='flex items-center justify-center w-[50px]'>

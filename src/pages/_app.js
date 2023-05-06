@@ -23,8 +23,8 @@ export const AppContext = createContext();
 
 export default function App({ Component, pageProps }) {
   const { push } = useRouter()
-  const [current_user, setCurrentUser] = useState(null)
-  const [user_address, setUserAddress] = useState(null)
+  const [current_user, setCurrentUser] = useState()
+  const [current_user_address, setCurrentUserAddress] = useState(null)
   const [is_dark_theme, setIsDarkTheme] = useState(false)
   const [login_modal, setLoginModal] = useState({ show: false, is_private_route: false })
 
@@ -32,12 +32,14 @@ export default function App({ Component, pageProps }) {
     current_user,
     setCurrentUser,
     destroy_session,
-    user_address,
-    setUserAddress,
+    current_user_address,
+    setCurrentUserAddress,
     is_dark_theme,
     switchTheme: () => setIsDarkTheme(!is_dark_theme),
     setLoginModal
   }
+
+  console.log(current_user_address)
 
   useEffect(() => {
     const theme = localStorage.getItem('theme')
@@ -61,18 +63,30 @@ export default function App({ Component, pageProps }) {
     push('/')
   }
 
+  useEffect(() => {
+    if (current_user) getCurrentUserAddress()
+  }, [current_user])
+
+  async function getCurrentUserAddress() {
+    const { token } = parseCookies()
+
+    if (!token) return
+    return await api_client.get('/current_user/address/')
+      .then(({ data }) => setCurrentUserAddress(data))
+      .catch(console.error)
+  }
+
   async function getCurrentUser() {
     const { token } = parseCookies()
 
-    if (token) {
-      return await api_client.get('/current_user/').then(({ data }) => {
-        setCurrentUser(data)
+    if (!token) return
+    return await api_client.get('/current_user/')
+      .then(({ data }) => setCurrentUser(data))
+      .catch((error) => {
+        console.error(error)
+        destroyCookie(undefined, 'token')
       })
-        .catch((error) => {
-          console.error(error)
-          destroyCookie(undefined, 'token')
-        })
-    }
+
   }
 
   return (
