@@ -39,8 +39,6 @@ export default function App({ Component, pageProps }) {
     setLoginModal
   }
 
-  console.log(current_user_address)
-
   useEffect(() => {
     const theme = localStorage.getItem('theme')
     if (theme === 'dark') {
