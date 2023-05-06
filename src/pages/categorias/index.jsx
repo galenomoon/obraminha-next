@@ -5,12 +5,12 @@ import Link from 'next/link'
 import api_client from '@/config/api_client';
 
 //components
-import Banner from '@/components/Banner/index';
 import Skeleton from '@/components/Skeleton';
+import Banner from '@/components/Banner/index';
+import Header from '@/components/Header/index.jsx';
 
 //mock
 import { categories_mock } from '../../mocks/categories.js';
-import Header from '@/components/Header/index.jsx';
 
 export default function Categories() {
   const [categories, setCategories] = React.useState([]);

@@ -14,7 +14,6 @@ import currencyFormatter from '../../helpers/currencyFormatter';
 //components
 import Button from '@/components/Button'
 import Slides from '@/components/Slides';
-import Image from 'next/image';
 
 export default function PropertyBox({ property }) {
   const { push: navigate } = useRouter()
@@ -27,8 +26,8 @@ export default function PropertyBox({ property }) {
         <div className='md:w-[35%] sm:w-full overflow-hidden md:h-full sm:h-[300px] relative flex items-center'>
           {image_index !== 0 && <MdArrowBackIos color="#fff" onClick={() => setImageIndex(image_index - 1)} className='absolute text-4xl cursor-pointer hover:scale-125 duration-100 left-3 self-center drop-shadow-lg' />}
           {image_index !== property?.images?.length - 1 && <MdArrowForwardIos color="#fff" onClick={() => setImageIndex(image_index + 1)} className='absolute text-4xl cursor-pointer hover:scale-125 duration-100 right-3 self-center drop-shadow-lg' />}
-          <Image
-            onClick={() => navigate(`terrenos/${property?.id}`)}
+          <img
+            onClick={() => navigate(`/terrenos/${property?.id}`)}
             className='w-full h-full cursor-pointer object-cover sm:rounded-t-2xl md:rounded-l-2xl md:rounded-r-none border-r-2 border-background-optional dark:border-x-dark-background-light '
             src={property?.images[image_index]?.image}
             alt="Terreno"
