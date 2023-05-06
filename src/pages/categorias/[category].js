@@ -8,12 +8,12 @@ import api_client from '../../config/api_client';
 import Skeleton from '@/components/Skeleton';
 import Banner from '@/components/Banner/index';
 import SearchBar from '@/components/SearchBar/index';
-// import SearchByAddress from '@/components/SearchByAddress';
+import SearchByAddress from '@/components/SearchByAddress';
 import OrganizationBox from '@/components/OrganizationBox';
 import PaginationBox from '@/components/PaginationBox/index';
 
 //hooks
-import useDebounce from '../../hooks/useDebouce';
+import useDebounce from '../../hooks/useDebounce';
 
 export default function Organizations() {
   const { query } = useRouter()
@@ -79,7 +79,7 @@ export default function Organizations() {
       <Banner is_loaded={is_loaded_category} title={category?.name} link_to='/categorias' />
       <div className='w-full h-full flex flex-col items-center md:gap-8 sm:gap-2 px-2'>
         <div className='md:w-[80vw] sm:w-full my-6'>
-          {/* <SearchByAddress
+          <SearchByAddress
             placeholder="Busca em cidade, estado"
             category_slug={{ category_slug: category?.slug }}
             get_options_endpoint="/organizations/autocomplete/address/"
@@ -88,7 +88,7 @@ export default function Organizations() {
             setIsLoaded={setIsLoaded}
             setRadius={setRadius}
             radius={radius}
-          /> */}
+          />
         </div>
         <div className='flex items-center md:flex-row sm:flex-col sm:gap-4 justify-center mb-4 md:w-[80vw] sm:w-full relative'>
           <div className='flex md:flex-row sm:flex-col w-full gap-2 items-center justify-between'>
