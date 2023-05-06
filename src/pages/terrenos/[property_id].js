@@ -30,7 +30,6 @@ import { AppContext } from '../_app';
 
 export default function Property() {
   const { query } = useRouter()
-  console.log({query})
   const property_id = query?.property_id
   const { setLoginModal, current_user } = useContext(AppContext)
   const current_user_id = current_user?.id
