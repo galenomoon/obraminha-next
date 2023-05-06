@@ -16,13 +16,17 @@ import background_base from '@/assets/base-light.svg'
 import background_base_dark from '@/assets/base-dark.svg'
 
 // components
+import Modal from '@/components/Modal';
 import Footer from '@/components/Footer'
 import Navbar from '@/components/NavBar';
+import AuthForm from '@/components/Auth/Form';
 
 export const AppContext = createContext();
 
 export default function App({ Component, pageProps }) {
   const { push } = useRouter()
+  const { token } = parseCookies()
+
   const [current_user, setCurrentUser] = useState()
   const [current_user_address, setCurrentUserAddress] = useState(null)
   const [is_dark_theme, setIsDarkTheme] = useState(false)
@@ -36,7 +40,7 @@ export default function App({ Component, pageProps }) {
     setCurrentUserAddress,
     is_dark_theme,
     switchTheme: () => setIsDarkTheme(!is_dark_theme),
-    setLoginModal
+    setLoginModal: (show, is_private_route) => setLoginModal({ show, is_private_route })
   }
 
   useEffect(() => {
@@ -57,17 +61,16 @@ export default function App({ Component, pageProps }) {
 
   function destroy_session() {
     destroyCookie(undefined, 'token')
+    setCurrentUserAddress(null)
     setCurrentUser(null)
     push('/')
   }
 
   useEffect(() => {
     if (current_user) getCurrentUserAddress()
-  }, [current_user])
+  }, [current_user, token])
 
   async function getCurrentUserAddress() {
-    const { token } = parseCookies()
-
     if (!token) return
     return await api_client.get('/current_user/address/')
       .then(({ data }) => setCurrentUserAddress(data))
@@ -75,8 +78,6 @@ export default function App({ Component, pageProps }) {
   }
 
   async function getCurrentUser() {
-    const { token } = parseCookies()
-
     if (!token) return
     return await api_client.get('/current_user/')
       .then(({ data }) => setCurrentUser(data))
@@ -84,16 +85,15 @@ export default function App({ Component, pageProps }) {
         console.error(error)
         destroyCookie(undefined, 'token')
       })
-
   }
 
   return (
     <AppContext.Provider value={context_value}>
-      <div className={is_dark_theme ? "dark " : ""}>
+      <div className={`duration-500 ease-in-out ${is_dark_theme ? "dark " : ""}`}>
         <Navbar />
         <div className='text-typography-base dark:text-dark-typography-base relative flex flex-col w-full h-fit overflow-y-auto'>
-          <Image src={background_base} alt="bg-base" fill className="dark:hidden h-full absolute z-0 object-cover" />
-          <Image src={background_base_dark} alt="bg-base-dark" fill className="dark:block hidden absolute z-0 object-cover " />
+          <Image src={background_base} alt="bg-base" fill className=" duration-500 animate-fade-in dark:hidden h-full absolute z-0 object-cover" />
+          <Image src={background_base_dark} alt="bg-base-dark" fill className=" duration-500 animate-fade-in dark:block hidden absolute z-0 object-cover " />
           <div className='z-[10]'>
             <Component {...pageProps} />
           </div>
@@ -101,6 +101,12 @@ export default function App({ Component, pageProps }) {
         <Footer />
       </div>
       <Toaster position="top-right" />
+      <Modal
+        show={login_modal?.show}
+        close={login_modal?.is_private_route ? null : () => setLoginModal(false)}
+        children={<AuthForm is_login is_modal />}
+        className="!overflow-y-auto !md:max-h-[90vh] !justify-start"
+      />
     </AppContext.Provider>
   )
 }

@@ -16,6 +16,7 @@ import default_profile_pic from '../../assets/default_profile_pic.svg'
 //deeps
 import api_client from '../../config/api_client';
 import { AppContext } from '../_app';
+import Header from '@/components/Header';
 
 export default function UserProfile() {
   const address_model = {
@@ -82,6 +83,7 @@ export default function UserProfile() {
 
   return (
     <div className="flex w-full min-h-screen items-center sm:px-3 sm:py-6 md:p-10 h-fit flex-col overflow-hidden">
+      <Header subtitle={'Meu Perfil'} />
       <form onSubmit={e => disabled ? e.preventDefault() : handleSubmit(e)} className='flex flex-col items-center rounded-3xl p-12 dark:bg-dark-background-neutral bg-background-neutral shadow-2xl shadow-black/10'>
         <span className="font-bold sm:text-3xl md:text-4xl sm:mb-4 md:mb-8">
           Editar perfil

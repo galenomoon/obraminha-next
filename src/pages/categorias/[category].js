@@ -14,6 +14,7 @@ import PaginationBox from '@/components/PaginationBox/index';
 
 //hooks
 import useDebounce from '../../hooks/useDebounce';
+import Header from '@/components/Header';
 
 export default function Organizations() {
   const { query } = useRouter()
@@ -76,6 +77,7 @@ export default function Organizations() {
 
   return (
     <div className="flex w-full pb-20 min-h-screen h-fit flex-col overflow-hidden">
+      <Header subtitle={category?.name} />
       <Banner is_loaded={is_loaded_category} title={category?.name} link_to='/categorias' />
       <div className='w-full h-full flex flex-col items-center md:gap-8 sm:gap-2 px-2'>
         <div className='md:w-[80vw] sm:w-full my-6'>

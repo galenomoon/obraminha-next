@@ -50,7 +50,7 @@ export default function Navbar() {
     toast.success('Usuário deslogado com sucesso')
   }
 
-  return (pathname?.includes('entrar') || pathname?.includes('cadastrar')) ? null :
+  return (pathname?.includes('entrar') || pathname?.includes('cadastro')) ? null :
     <>
       <div ref={NavBarRef} className='w-full md:h-fit sm:h-[100px] shadow-lg sm:px-7 flex md:px-0 justify-between items-center bg-background-base dark:bg-dark-background-neutral'>
         <div className='flex items-center sm:block md:hidden'>
@@ -110,7 +110,7 @@ export default function Navbar() {
               <Button to='/entrar' className='!py-[12px] !w-[150px] md:block sm:hidden flex items-center justify-center text-center'>
                 Entrar
               </Button>
-              <Button to='/cadastrar' className='!py-[12px] !text-typography-primary !w-[150px] md:block sm:hidden flex items-center justify-center text-center border-2 border-background-secondary bg-transparent'>
+              <Button to='/cadastro' className='!py-[12px] !text-typography-primary !w-[150px] md:block sm:hidden flex items-center justify-center text-center border-2 border-background-secondary bg-transparent'>
                 Cadastrar
               </Button>
               <button onClick={() => switchTheme()}>
@@ -175,7 +175,7 @@ export default function Navbar() {
                 <Button to='/entrar' className='!w-[80%] my-4'>
                   Entrar
                 </Button>
-                <Button to='/cadastrar' className='!w-[80%] mt-2 text-background-secondary border-2 border-background-secondary !bg-transparent'>
+                <Button to='/cadastro' className='!w-[80%] mt-2 text-background-secondary border-2 border-background-secondary !bg-transparent'>
                   Cadastrar
                 </Button>
               </>

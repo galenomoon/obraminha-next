@@ -25,7 +25,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { MdGpsFixed } from 'react-icons/md'
 
 export default function SearchByAddress({ setSelectedAddress = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint, category_slug }) {
-  const { current_user, current_user_address, setAuthModal } = useContext(AppContext)
+  const { current_user, current_user_address, setLoginModal } = useContext(AppContext)
   const current_user_id = current_user?.id
   const [current_radius, setCurrentRadius] = React.useState(selected_address?.radius ?? null)
   const [is_getting_current_location, setIsGettingCurrentLocation] = React.useState(false)
@@ -117,8 +117,8 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
   function handleSearchByUserAddress() {
     setGettingByUserAddress(true)
     if (!current_user_address?.id) {
-      if (!current_user_id) return setAuthModal(true)
-      return navigate('/editar-perfil')
+      if (!current_user_id) return setLoginModal(true)
+      return navigate('/meu-perfil')
     }
     const { latitude, longitude } = current_user_address
     setSearchValue(`${current_user_address?.district}, ${current_user_address?.city} - ${current_user_address?.state}`)
