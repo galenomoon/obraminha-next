@@ -139,7 +139,7 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
               onChange={setSearchValue}
             />
             {(show_auto_complete) ?
-              <div className='flex flex-col shadow-md z-10 w-full absolute top-16 items-start rounded-2xl border-[2px] dark:border-dark-typography-light/20 border-typography-light'>
+              <div className='flex flex-col max-h-[300px] overflow-y-auto shadow-md z-10 w-full absolute top-16 items-start rounded-2xl border-[2px] dark:border-dark-typography-light/20 border-typography-light'>
                 {options?.map((option, idx) =>
                   <button onClick={() => handleSelectOption(option)} key={idx} className='flex items-center w-full hover:dark:bg-dark-background-base hover:bg-background-neutral bg-background-optional dark:bg-dark-background-neutral  first:rounded-t-2xl last:rounded-b-2xl p-3'>
                     {option?.address ? option?.address : option}
