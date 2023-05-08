@@ -27,6 +27,7 @@ import currencyFormatter from '../../helpers/currencyFormatter';
 
 //context
 import { AppContext } from '../_app';
+import Header from '@/components/Header';
 
 export default function Property() {
   const { query } = useRouter()
@@ -86,6 +87,7 @@ export default function Property() {
   return (
     is_not_found ? <NotFound title="Terreno não encontrado" subtitle="O terreno que você está procurando não existe ou foi removidao." /> :
       <>
+        <Header subtitle={property?.title} />
         <div className="flex min-h-screen self-center items-center md:px-10 sm:px-0 sm:w-full py-10 gap-8 h-fit flex-col overflow-hidden">
           <section className='flex md:flex-row sm:flex-col w-full sm:max-w-auto md:max-w-[1300px] gap-5 shadow-[0_0px_34px_0px_rgba(25,25,25,0.088)] sm:py-4 md:p-10 bg-background-neutral dark:bg-dark-background-neutral sm:rounded-none md:rounded-3xl'>
             <div className='w-full flex flex-col'>
