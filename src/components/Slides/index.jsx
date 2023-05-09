@@ -50,13 +50,25 @@ export default function Slides({ organization, show, close, image_selected, imag
             <MdArrowBackIos size={42} color="#fff" />
           </button>
         }
-        {!images ? <Image src={not_found} alt='not found' title="Erro de imagem" className='md:h-[75vh] md:!w-[75vw] sm:w-[80vw] object-cover rounded-xl' /> :
+        {!images ?
           <Image
+            src={not_found}
+            alt='not found'
+            title="Erro de imagem"
+            width={1000}
+            height={1000}
+            className='md:h-[75vh] md:!w-[75vw] sm:w-[80vw] object-cover rounded-xl'
+          />
+          :
+          <Image
+            width={1000}
+            height={1000}
             onError={e => e.target.src = not_found}
-            src={images?.[index]?.image}
+            src={images?.[index]?.image ? images?.[index]?.image : not_found}
             alt='portifolio da organização'
             className='md:h-[75vh] md:w-[75vw] sm:w-[80vw] object-contain rounded-xl'
-          />}
+          />
+        }
         {index + 1 !== images?.length &&
           <button onClick={() => setIndex(index + 1)} className='z-[300] absolute md:right-16 sm:right-3 hover:scale-110 duration-150 ease-in-out '>
             <MdArrowForwardIos size={42} color="#fff" />

@@ -13,7 +13,7 @@ import SeparatorLabel from '@/components/SeparatorLabel';
 import { CgSpinner } from 'react-icons/cg';
 import { GoVerified } from 'react-icons/go';
 
-//redux
+//context
 import { AppContext } from '@/pages/_app';
 
 export default function AddressForm({ setAddressValues = () => { }, is_user_edit, address_values, setDisabled = () => { }, show_lat_lng_fields }) {

@@ -112,3 +112,16 @@ input[type=range]:focus::-ms-fill-lower {
 input[type=range]:focus::-ms-fill-upper {
   background: #3CB0A0dd;
 }
+
+/* YouTube Embed */
+
+.video-responsive iframe {
+  width: 607.75px;
+  height: 343.2px
+}
+@media (max-width: 768px) {
+  .video-responsive iframe {
+    width: 325px;
+    height: 200px
+  }
+}

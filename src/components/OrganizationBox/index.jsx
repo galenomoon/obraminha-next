@@ -63,7 +63,7 @@ export default function OrganizationBox({ organization, category_slug }) {
           </div>
           <div className='bg-typography-light/20 h-[1px] w-full' />
           <div className='sm:p-0 md:py-2 md:my-3 sm:mt-4 sm:mb-3'>
-            <Button to={`/${category_slug}/${organization?.slug}/sobre`}>
+            <Button to={`/${organization?.slug}/sobre`}>
               Ver Detalhes
             </Button>
           </div>

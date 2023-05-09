@@ -40,7 +40,6 @@ export default function Navbar() {
   useEffect(() => {
     setIsMenuOpen(false)
     setIsUserMenuOpen(false)
-    NavBarRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [pathname])
 
   function logOut() {

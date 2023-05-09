@@ -4,12 +4,16 @@ import React, { useEffect } from 'react'
 import Banner from '@/components/Banner'
 import Header from '@/components/Header'
 import Skeleton from '@/components/Skeleton'
+import EmptyState from '@/components/EmptyState'
 import PropertyBox from '@/components/PropertyBox'
 import PaginationBox from '@/components/PaginationBox'
 import SearchByAddress from '@/components/SearchByAddress'
 
 //deeps
 import api_client from '@/config/api_client';
+
+//assets
+import searching_man from "../../assets/searching_man.svg"
 
 export default function Properties() {
   const [is_loaded, setIsLoaded] = React.useState(false)
@@ -63,7 +67,12 @@ export default function Properties() {
             {!is_loaded ? <Skeleton length={9} className='!w-full' children={<PropertyBox />} /> : (
               properties?.results?.length ?
                 properties?.results?.map(property => <PropertyBox property={property} key={property?.id} />)
-                : <p className='text-typography-secondary dark:text-typography-primary text-4xl font-semibold text-center'>Nenhum imóvel encontrado</p>
+                :
+                <EmptyState
+                  image={searching_man}
+                  title="Nenhum terreno encontrado"
+                  description="Não encontramos nenhum terreno com o endereço informado. Tente novamente com outro endereço."
+                />
             )}
           </div>
         </div>
