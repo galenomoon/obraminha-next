@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 //components
 import Modal from '@/components/Modal';
 import Alert from '@/components/Alert';
+import Header from '@/components/Header';
 import Slides from '@/components/Slides';
 import Button from '@/components/Button';
 import NotFound from '@/components/NotFound';
@@ -27,7 +28,6 @@ import currencyFormatter from '../../helpers/currencyFormatter';
 
 //context
 import { AppContext } from '../_app';
-import Header from '@/components/Header';
 
 export default function Property() {
   const { query } = useRouter()
@@ -44,7 +44,7 @@ export default function Property() {
   const [is_loaded, setIsLoaded] = React.useState(false)
 
   React.useEffect(() => {
-    getProperty()
+    getProperty(property_id)
   }, [property_id])
 
   React.useEffect(() => {
@@ -59,7 +59,7 @@ export default function Property() {
     }
   }, [is_alert_opened])
 
-  async function getProperty() {
+  async function getProperty(property_id) {
     if (!property_id) return
     try {
       const { data: $property } = await api_client.get(`/properties/${property_id}/`)

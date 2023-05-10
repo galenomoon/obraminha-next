@@ -47,7 +47,7 @@ export default function OrganizationQuestions({ organization }) {
     }
 
     setLoading(true)
-    return await api_client.post(`/comments/new/`, { content: question, organization_id: organization.id })
+    return await api_client.post(`/comments/new/`, { content: question, organization_id: organization.id, user_id: current_user.id })
       .then(() => {
         toast.success('Pergunta enviada com sucesso!')
         setQuestion('')
