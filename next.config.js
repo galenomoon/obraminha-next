@@ -7,6 +7,7 @@ const nextConfig = {
     REACT_APP_GOOGLE_MAPS_API_KEY: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   },  
   images: {
+    domains: ['obraminha-assets.s3.amazonaws.com', 'localhost'],
     remotePatterns: [
       {
         protocol: 'https',

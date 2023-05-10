@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router';
 
 //deeps
 import api_client from '@/config/api_client'
@@ -20,7 +21,9 @@ import PropertyItem from '@/components/PropertyItem';
 import PaginationBox from '@/components/PaginationBox';
 import ProposalListSection from '@/components/ProposalList';
 
-export default function PropertyListSection({ property_id }) {
+export default function PropertyListSection() {
+  const { query } = useRouter()
+  const { property_id } = query
   const [properties, setProperties] = React.useState([])
   const [is_loaded, setIsLoaded] = React.useState(false)
   const { setLoginModal, current_user } = React.useContext(AppContext)

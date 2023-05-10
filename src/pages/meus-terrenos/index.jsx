@@ -1,4 +1,5 @@
 import React from 'react'
+import Header from '@/components/Header';
 
 //components
 import Banner from '@/components/Banner'
@@ -6,7 +7,6 @@ import PropertyListSection from '@/components/PropertyListSection';
 
 //assets
 import property_manager from '../../assets/organization-manager.svg'
-import Header from '@/components/Header';
 
 export default function MyProperties() {
 
