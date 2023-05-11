@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 //styles
 import { MdClose, MdError } from 'react-icons/md'
@@ -34,7 +35,7 @@ export default function Alert({ show, close, response, is_loaded, text, navigate
     </div>
     :
     <div className='flex flex-col justify-center items-center'>
-      <img src={success} alt='success' className='w-1/2' />
+      <Image src={success} alt='success' className='w-1/2' />
       <div className='flex flex-col items-center justify-center gap-3 pb-4'>
         <h1 className='text-3xl font-semibold'>
           {text?.title || 'Seu orçamento foi enviado com sucesso!'}

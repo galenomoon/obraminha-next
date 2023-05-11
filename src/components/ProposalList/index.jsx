@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useRouter } from 'next/router';
 
 // components
 import ProposalItem from '@/components/ProposalItem'
@@ -9,7 +10,9 @@ import PaginationBox from '@/components/PaginationBox'
 // deeps
 import api_client from '@/config/api_client'
 
-export default function ProposalListSection({ property, proposal_id }) {
+export default function ProposalListSection({ property }) {
+  const { query } = useRouter()
+  const { proposal_id } = query
   const [proposals, setProposals] = React.useState([])
   const [selected_proposal, setSelectedProposal] = React.useState(null)
   const [is_loaded, setIsLoaded] = React.useState(false)
