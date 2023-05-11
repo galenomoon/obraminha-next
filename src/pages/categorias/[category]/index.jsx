@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react'
 
 //deeps
 import { useRouter } from 'next/router'
-import api_client from '../../config/api_client';
+import api_client from '@/config/api_client';
 
 //components
+import Header from '@/components/Header';
 import Skeleton from '@/components/Skeleton';
 import Banner from '@/components/Banner/index';
 import SearchBar from '@/components/SearchBar/index';
@@ -13,8 +14,7 @@ import OrganizationBox from '@/components/OrganizationBox';
 import PaginationBox from '@/components/PaginationBox/index';
 
 //hooks
-import useDebounce from '../../hooks/useDebounce';
-import Header from '@/components/Header';
+import useDebounce from '../../../hooks/useDebounce';
 
 export default function Organizations() {
   const { query } = useRouter()

@@ -25,6 +25,8 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { MdGpsFixed } from 'react-icons/md'
 
 export default function SearchByAddress({ setSelectedAddress = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint, category_slug }) {
+  const { push: navigate, query } = useRouter()
+  const address_slug = query?.address_slug
   const { current_user, current_user_address, setLoginModal } = useContext(AppContext)
   const current_user_id = current_user?.id
   const [current_radius, setCurrentRadius] = React.useState(selected_address?.radius ?? null)
@@ -33,10 +35,15 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
   const [permission_has_rejected, setPermissionHasRejected] = React.useState(false)
   const [show_auto_complete, setShowAutoComplete] = React.useState(false)
   const [show_radius_modal, setShowRadiusModal] = React.useState(false)
-  const [search_value, setSearchValue] = React.useState('')
+  const [search_value, setSearchValue] = React.useState(address_slug)
   const [options, setOptions] = React.useState([])
   const debouncedSearch = useDebounce(search_value)
-  const { push:navigate} = useRouter()
+
+  useEffect(() => {
+    if (address_slug && !search_value) {
+      getAddressesOptions(address_slug)
+    }
+  }, [address_slug])
 
   useEffect(() => {
     getAddressesOptions()
@@ -55,11 +62,28 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
     }
   }, [selected_address])
 
-  async function getAddressesOptions() {
-    return await api_client.post(get_options_endpoint, { query: debouncedSearch, ...category_slug })
+  const addressInJSON = (param) => {
+    return {
+      state: param.address?.split("-")[1]?.trim(),
+      city: param.address?.split("-")[0]?.split(",")[1]?.trim(),
+      district: param.address?.split(",")[0]?.trim(),
+      latitude: param.latitude,
+      longitude: param.longitude,
+    }
+  }
+
+  async function getAddressesOptions(get_by_address_slug = false) {
+
+    return await api_client.post(get_options_endpoint, { query: (get_by_address_slug ? address_slug.replace("-", " ") : debouncedSearch), ...category_slug })
       .then(({ data }) => {
-        setShowAutoComplete(data?.options?.length && !getting_by_user_address && !!search_value)
+        setShowAutoComplete(data?.options?.length && !getting_by_user_address && !!search_value && !(data?.options?.[0]?.address === debouncedSearch))
         setOptions(data?.options)
+        if (get_by_address_slug) {
+          const { options } = data
+          setSelectedAddress(addressInJSON(options?.[0]))
+          setSearchValue(options?.[0]?.address)
+          return
+        }
       })
       .catch(console.error)
       .finally(() => setGettingByUserAddress(false))
@@ -93,13 +117,7 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
     let formatted_address
 
     if (option?.address) {
-      formatted_address = {
-        state: option?.address?.split("-")[1]?.trim(),
-        city: option?.address?.split("-")[0]?.split(",")[1]?.trim(),
-        district: option?.address?.split(",")[0]?.trim(),
-        latitude: option?.latitude,
-        longitude: option?.longitude,
-      }
+      formatted_address = addressInJSON(option)
     } else {
       formatted_address = {
         state: option?.split("-")[1]?.trim(),
