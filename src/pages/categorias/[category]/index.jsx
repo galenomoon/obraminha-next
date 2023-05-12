@@ -8,10 +8,14 @@ import api_client from '@/config/api_client';
 import Header from '@/components/Header';
 import Skeleton from '@/components/Skeleton';
 import Banner from '@/components/Banner/index';
+import EmptyState from '@/components/EmptyState';
 import SearchBar from '@/components/SearchBar/index';
 import SearchByAddress from '@/components/SearchByAddress';
 import OrganizationBox from '@/components/OrganizationBox';
 import PaginationBox from '@/components/PaginationBox/index';
+
+//assets
+import searching_man from '../../../assets/searching_man.svg'
 
 //hooks
 import useDebounce from '../../../hooks/useDebounce';
@@ -137,9 +141,11 @@ export default function Organizations() {
           </div>
         </div>
         {(!organizations?.results?.length && is_loaded) ?
-          <p className='text-4xl text-center font-semibold self-center text-typography-primary/80'>
-            Nenhuma organização encontrada
-          </p>
+          <EmptyState
+            image={searching_man}
+            title="Nenhuma organização encontrada"
+            description="Não encontramos nenhuma organização com o endereço informado. Tente novamente com outro endereço."
+          />
           : null
         }
       </div>
