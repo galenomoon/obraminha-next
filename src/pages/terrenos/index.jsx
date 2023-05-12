@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 //components
 import Banner from '@/components/Banner'
@@ -16,10 +16,11 @@ import api_client from '@/config/api_client';
 import searching_man from "../../assets/searching_man.svg"
 
 export default function Properties() {
-  const [is_loaded, setIsLoaded] = React.useState(false)
-  const [properties, setProperties] = React.useState([])
-  const [radius, setRadius] = React.useState(50)
-  const [selected_address, setSelectedAddress] = React.useState()
+  const [is_loaded, setIsLoaded] = useState(false)
+  const [properties, setProperties] = useState([])
+  const [radius, setRadius] = useState(50)
+  const [address_on_slug, setAddressOnSlug] = useState(false);
+  const [selected_address, setSelectedAddress] = useState()
 
   useEffect(() => {
     getProperties()
@@ -38,8 +39,8 @@ export default function Properties() {
 
   return (
     <div className='w-full h-full flex flex-col'>
-      <Header subtitle="Terrenos" />
-      <Banner title="Terrenos" />
+      <Header subtitle={`Terrenos${address_on_slug ? ` em ${address_on_slug}` : ""}`} />
+      <Banner title={`Terrenos${address_on_slug ? ` em ${address_on_slug}` : ""}`} />
       <div className="flex min-h-screen self-center items-center md:w-[80vw] sm:w-full py-10 gap-8 h-fit flex-col overflow-hidden">
         <div className='flex flex-col items-center gap-4 w-full sm:px-4 md:px-8'>
           <div className='w-full sm:flex-col relative flex items-center'>
@@ -48,6 +49,8 @@ export default function Properties() {
               placeholder="Digite o endereço do terreno"
               setSelectedAddress={setSelectedAddress}
               selected_address={selected_address}
+              setAddressOnSlug={setAddressOnSlug}
+              address_on_slug={address_on_slug}
               setIsLoaded={setIsLoaded}
               setRadius={setRadius}
               radius={radius}
