@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <main className="flex w-full h-fit flex-col overflow-hidden">
-      <Header subtitle="Encontre os melhores prestadores de serviços para a sua obra!" />
+      <Header />
       <div className="flex md:flex-row sm:flex-col-reverse w-full sm:h-[65vh] md:h-[80vh]">
         <div className="flex w-full items-center justify-center  sm:p-0 md:pl-8">
           <div className="flex flex-col gap-2 animate-slide-in-r md:text-start sm:text-center">

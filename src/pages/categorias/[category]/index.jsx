@@ -21,6 +21,7 @@ export default function Organizations() {
   const category_slug = query?.category
   const [search, setSearch] = useState('');
   const [search_address, setSearchAddress] = useState('');
+  const [address_on_slug, setAddressOnSlug] = useState(false);
   const [category, setCategory] = useState()
   const [organizations, setOrganizations] = useState([])
   const [is_loaded, setIsLoaded] = useState(false);
@@ -77,8 +78,8 @@ export default function Organizations() {
 
   return (
     <div className="flex w-full pb-20 min-h-screen h-fit flex-col overflow-hidden">
-      <Header subtitle={category?.name} />
-      <Banner is_loaded={is_loaded_category} title={category?.name} link_to='/categorias' />
+      <Header subtitle={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`} />
+      <Banner is_loaded={is_loaded_category} title={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`} link_to='/categorias' />
       <div className='w-full h-full flex flex-col items-center md:gap-8 sm:gap-2 px-2'>
         <div className='md:w-[80vw] sm:w-full my-6'>
           <SearchByAddress
@@ -86,7 +87,9 @@ export default function Organizations() {
             category_slug={{ category_slug: category?.slug }}
             get_options_endpoint="/organizations/autocomplete/address/"
             setSelectedAddress={setSearchAddress}
+            setAddressOnSlug={setAddressOnSlug}
             selected_address={search_address}
+            address_on_slug={address_on_slug}
             setIsLoaded={setIsLoaded}
             setRadius={setRadius}
             radius={radius}

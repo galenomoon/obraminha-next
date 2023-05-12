@@ -24,7 +24,7 @@ import { GiPathDistance } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
 import { MdGpsFixed } from 'react-icons/md'
 
-export default function SearchByAddress({ setSelectedAddress = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint, category_slug }) {
+export default function SearchByAddress({ address_on_slug, setSelectedAddress = () => { }, setAddressOnSlug = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint, category_slug }) {
   const { push: navigate, query } = useRouter()
   const address_slug = query?.address_slug
   const { current_user, current_user_address, setLoginModal } = useContext(AppContext)
@@ -62,13 +62,13 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
     }
   }, [selected_address])
 
-  const addressInJSON = (param) => {
+  const addressInJSON = (param, get_by_address_slug) => {
     return {
+      district: get_by_address_slug ? "" : param.address?.split(",")[0]?.trim(),
+      latitude: get_by_address_slug ? "" : param.latitude,
+      longitude: get_by_address_slug ? "" : param.longitude,
       state: param.address?.split("-")[1]?.trim(),
       city: param.address?.split("-")[0]?.split(",")[1]?.trim(),
-      district: param.address?.split(",")[0]?.trim(),
-      latitude: param.latitude,
-      longitude: param.longitude,
     }
   }
 
@@ -76,12 +76,17 @@ export default function SearchByAddress({ setSelectedAddress = () => { }, select
 
     return await api_client.post(get_options_endpoint, { query: (get_by_address_slug ? address_slug.replace("-", " ") : debouncedSearch), ...category_slug })
       .then(({ data }) => {
-        setShowAutoComplete(data?.options?.length && !getting_by_user_address && !!search_value && !(data?.options?.[0]?.address === debouncedSearch))
-        setOptions(data?.options)
+        const { options } = data
+        let address = addressInJSON(options?.[0], get_by_address_slug)
+        setShowAutoComplete(
+          options?.length && !getting_by_user_address && !!search_value
+          && !(options?.[0]?.address === debouncedSearch || address_on_slug === debouncedSearch))
+        setOptions(options)
+
         if (get_by_address_slug) {
-          const { options } = data
-          setSelectedAddress(addressInJSON(options?.[0]))
-          setSearchValue(options?.[0]?.address)
+          setSelectedAddress(address)
+          setSearchValue(address?.city)
+          setAddressOnSlug(address?.city)
           return
         }
       })
