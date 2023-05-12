@@ -8,8 +8,9 @@ import EmptyState from '../EmptyState'
 import { useRouter } from 'next/router'
 
 export default function QuestionsList({ show_title = true, questions = [], organization, getQuestions = () => { } }) {
-  const { query: comment_id } = useRouter()
-
+  const { query } = useRouter()
+  const comment_id = query?.comment_id
+  
   return (
     questions?.length ?
       <>
