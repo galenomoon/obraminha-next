@@ -67,16 +67,20 @@ export default function Properties() {
         </div>
         <div className='flex md:flex-row sm:flex-col sm:px-4 md:px-8 w-full'>
           <div className='flex flex-col gap-4 w-full'>
-            {!is_loaded ? <Skeleton length={9} className='!w-full' children={<PropertyBox />} /> : (
-              properties?.results?.length ?
-                properties?.results?.map(property => <PropertyBox property={property} key={property?.id} />)
-                :
-                <EmptyState
-                  image={searching_man}
-                  title="Nenhum terreno encontrado"
-                  description="Não encontramos nenhum terreno com o endereço informado. Tente novamente com outro endereço."
-                />
-            )}
+            {!is_loaded ?
+              <Skeleton length={9} className='!w-full' >
+                <PropertyBox />
+              </Skeleton>
+              : (
+                properties?.results?.length ?
+                  properties?.results?.map(property => <PropertyBox property={property} key={property?.id} />)
+                  :
+                  <EmptyState
+                    image={searching_man}
+                    title="Nenhum terreno encontrado"
+                    description="Não encontramos nenhum terreno com o endereço informado. Tente novamente com outro endereço."
+                  />
+              )}
           </div>
         </div>
       </div>
