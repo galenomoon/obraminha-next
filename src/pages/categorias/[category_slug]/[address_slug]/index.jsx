@@ -1,5 +1,5 @@
 import OrganizationsPage from '../index'
 
-export default function Organizations(){
+export default function OrganizationsByAddress(){
   return <OrganizationsPage />
 } 

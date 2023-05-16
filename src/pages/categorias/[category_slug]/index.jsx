@@ -22,7 +22,7 @@ import useDebounce from '../../../hooks/useDebounce';
 
 export default function Organizations() {
   const { query } = useRouter()
-  const category_slug = query?.category
+  const { category_slug } = query
   const [search, setSearch] = useState('');
   const [search_address, setSearchAddress] = useState('');
   const [address_on_slug, setAddressOnSlug] = useState(false);

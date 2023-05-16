@@ -17,13 +17,13 @@ import Slides from '../Slides/index';
 //assets
 import not_found from '../../assets/not_found.svg'
 
-export default function OrganizationBox({ organization, category_slug }) {
+export default function OrganizationBox({ organization }) {
   const { push: navigate } = useRouter()
   const [image_index, setImageIndex] = React.useState(0)
   const [modal_image, setModalImage] = React.useState({ show: false, index: 0, images: organization?.work_images })
 
   const DynamicLink = organization?.site_url ? "a" : Link
-  const dynamic_link_props = organization?.site_url ? { href: organization?.site_url, target: '_blank', rel: "noopener noreferrer" } : { href: `/${category_slug}/${organization?.slug}/sobre` }
+  const dynamic_link_props = organization?.site_url ? { href: organization?.site_url, target: '_blank', rel: "noopener noreferrer" } : { href: `/${organization?.slug}/sobre` }
 
   return (
     <>
@@ -40,7 +40,7 @@ export default function OrganizationBox({ organization, category_slug }) {
             alt={'Organization Portifolio'}
             onError={(e) => e.target.src = not_found}
             src={organization?.work_images?.[image_index]?.image || organization?.profile_image?.image || not_found}
-            onClick={() => navigate(`/${category_slug}/${organization?.slug}/sobre`)}
+            onClick={() => navigate(`/${organization?.slug}/sobre`)}
             className='object-cover cursor-pointer sm:w-full md:w-[400px] rounded-t-2xl '
           />
         </div>
