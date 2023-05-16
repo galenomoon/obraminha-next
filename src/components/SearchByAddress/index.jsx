@@ -26,7 +26,7 @@ import { MdGpsFixed } from 'react-icons/md'
 
 export default function SearchByAddress({ address_on_slug, setSelectedAddress = () => { }, setAddressOnSlug = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint, category_slug }) {
   const { push: navigate, query } = useRouter()
-  const address_slug = query?.address_slug
+  const address_slug = query?.path?.[1]
   const { current_user, current_user_address, setLoginModal } = useContext(AppContext)
   const current_user_id = current_user?.id
   const [current_radius, setCurrentRadius] = React.useState(selected_address?.radius ?? null)
