@@ -20,7 +20,7 @@ import searching_man from '../../../assets/searching_man.svg'
 //hooks
 import useDebounce from '../../../hooks/useDebounce';
 
-export default function Organizations() {
+export default function Organizations({ search_by_address }) {
   const { query } = useRouter()
   const { category_slug } = query
   const [search, setSearch] = useState('');
@@ -35,12 +35,12 @@ export default function Organizations() {
   const debounced_address_search = useDebounce(search_address);
 
   useEffect(() => {
-    if (debounced_address_search) {
+    if (search_by_address && debounced_address_search) {
       getOrganizationByAddress(debounced_query_search)
     } else {
       getOrganizationsByCategory(debounced_query_search)
     }
-  }, [debounced_address_search, debounced_query_search, category_slug])
+  }, [debounced_address_search, debounced_query_search, category_slug, search_by_address])
 
   async function getOrganizationByAddress(organization_name) {
     if (!category?.slug) return
@@ -61,6 +61,7 @@ export default function Organizations() {
 
   async function getOrganizationsByCategory(search) {
     setIsLoaded(false)
+    if (!category_slug) return
     try {
       const { data: category_res } = await api_client.get(`/categories/${category_slug}/`)
       setCategory(category_res)
