@@ -151,7 +151,7 @@ export default function Navbar() {
             />
           </button>
           <div className='w-[80%] h-[2px] bg-typography-light/20 dark:bg-dark-typography-light/20' />
-          <Link onClick={(() => setIsMenuOpen(false))} href="/inicio" className='py-6 w-[80%] text-2xl '>Início</Link>
+          <Link onClick={(() => setIsMenuOpen(false))} href="/" className='py-6 w-[80%] text-2xl '>Início</Link>
           <Link onClick={(() => setIsMenuOpen(false))} href="/categorias" className='py-6 w-[80%] text-2xl '>Categorias</Link>
           <Link onClick={(() => setIsMenuOpen(false))} href="/terrenos" className='py-6 w-[80%] text-2xl '>Terrenos</Link>
           <Link onClick={(() => setIsMenuOpen(false))} href="/termos-de-uso" className='py-6 w-[80%] text-2xl '>Termos de uso</Link>
