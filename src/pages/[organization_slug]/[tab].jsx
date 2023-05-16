@@ -81,7 +81,10 @@ export default function Organization() {
   return (
     is_not_found ? <NotFound title="Organização não encontrada" subtitle="A organização que você está procurando não existe ou foi removida." /> :
       <div className="flex w-full min-h-screen h-fit flex-col overflow-hidden gap-6 pb-10">
-        <Header subtitle={`${organization?.name} - ${organization?.categories?.[0]?.name}`} />
+        <Header
+          subtitle={`${organization?.name} - ${organization?.categories?.[0]?.name}`}
+          description={organization?.description}
+        />
         <div className='flex flex-col w-full h-fit'>
           <Banner is_loaded={is_loaded} organization={organization} category={category || organization?.categories?.[0]?.name} show_back hide_image />
           <div className='flex relative w-full sm:items-center sm:justify-center'>

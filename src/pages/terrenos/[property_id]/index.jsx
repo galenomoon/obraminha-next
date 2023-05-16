@@ -16,7 +16,7 @@ import ProposalForm from '@/components/ProposalForm';
 import Skeleton, { SkeletonText } from '@/components/Skeleton/index';
 
 //assets
-import not_found from '../../assets/not_found.svg'
+import not_found from '../../../assets/not_found.svg'
 
 //styles
 import moment from 'moment';
@@ -24,10 +24,10 @@ import { toast } from 'react-hot-toast';
 import { MdArrowBackIos, MdArrowForwardIos, MdOpenInNew } from 'react-icons/md'
 
 //helpers
-import currencyFormatter from '../../helpers/currencyFormatter';
+import currencyFormatter from '../../../helpers/currencyFormatter';
 
 //context
-import { AppContext } from '../_app';
+import { AppContext } from '../../_app';
 
 export default function Property() {
   const { query } = useRouter()

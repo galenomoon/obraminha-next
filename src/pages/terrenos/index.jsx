@@ -39,7 +39,10 @@ export default function Properties() {
 
   return (
     <div className='w-full h-full flex flex-col'>
-      <Header subtitle={`Terrenos${address_on_slug ? ` em ${address_on_slug}` : ""}`} />
+      <Header
+        subtitle={`Terrenos${address_on_slug ? ` em ${address_on_slug}` : ""}`}
+        description={`Encontre os melhores terrenos${address_on_slug ? ` em ${address_on_slug}` : ""} para a sua obra!`}
+      />
       <Banner title={`Terrenos${address_on_slug ? ` em ${address_on_slug}` : ""}`} />
       <div className="flex min-h-screen self-center items-center md:w-[80vw] sm:w-full py-10 gap-8 h-fit flex-col overflow-hidden">
         <div className='flex flex-col items-center gap-4 w-full sm:px-4 md:px-8'>

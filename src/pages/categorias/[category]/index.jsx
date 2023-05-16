@@ -82,7 +82,10 @@ export default function Organizations() {
 
   return (
     <div className="flex w-full pb-20 min-h-screen h-fit flex-col overflow-hidden">
-      <Header subtitle={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`} />
+      <Header
+        subtitle={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`}
+        description={`Encontre serviços de ${category?.name} ${address_on_slug ? `em ${address_on_slug}` : ""}`}
+      />
       <Banner is_loaded={is_loaded_category} title={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`} link_to='/categorias' />
       <div className='w-full h-full flex flex-col items-center md:gap-8 sm:gap-2 px-2'>
         <div className='md:w-[80vw] sm:w-full my-6'>

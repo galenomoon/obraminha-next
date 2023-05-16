@@ -1,4 +1,4 @@
-import Properties from '../index'
+import Properties from '../../index'
 
 export default function PropertiesByAddress() {
   return <Properties />
