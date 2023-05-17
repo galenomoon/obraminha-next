@@ -20,13 +20,27 @@ import searching_man from '../../../assets/searching_man.svg'
 //hooks
 import useDebounce from '../../../hooks/useDebounce';
 
-export default function Organizations() {
+
+export async function getStaticProps({ params }) {
+  const { data: category } = await api_client.get(`/categories/${params?.category_slug}`)
+
+  return { props: { category } }
+}
+
+export async function getStaticPaths() {
+  const { data: categories } = await api_client.get('/categories/main/') || []
+
+  const paths = categories?.map(category => { return { params: { category_slug: category?.slug } } })
+  return { paths, fallback: true }
+}
+
+export default function Organizations({ category }) {
   const { query } = useRouter()
-  const category_slug = query?.path?.[0]
+  const { category_slug } = query
   const [search, setSearch] = useState('');
   const [search_address, setSearchAddress] = useState('');
   const [address_on_slug, setAddressOnSlug] = useState(false);
-  const [category, setCategory] = useState()
+
   const [organizations, setOrganizations] = useState([])
   const [is_loaded, setIsLoaded] = useState(false);
   const [radius, setRadius] = useState(null);
@@ -63,9 +77,6 @@ export default function Organizations() {
     setIsLoaded(false)
     if (!category_slug) return
     try {
-      const { data: category_res } = await api_client.get(`/categories/${category_slug}/`)
-      setCategory(category_res)
-
       let method = search ? 'post' : 'get'
       let url = search ? `/categories/${category_slug}/search/organizations/` : `/categories/${category_slug}/organizations`
       let payload = search ? { name: search } : null

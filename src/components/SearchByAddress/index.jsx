@@ -24,9 +24,9 @@ import { GiPathDistance } from 'react-icons/gi'
 import { IoCloseSharp } from 'react-icons/io5'
 import { MdGpsFixed } from 'react-icons/md'
 
-export default function SearchByAddress({ address_on_slug, setSelectedAddress = () => { }, setAddressOnSlug = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint, category_slug }) {
+export default function SearchByAddress({ address_on_slug, setSelectedAddress = () => { }, setAddressOnSlug = () => { }, selected_address, setIsLoaded = () => { }, placeholder, setRadius = () => { }, get_options_endpoint }) {
   const { push: navigate, query } = useRouter()
-  const address_slug = query?.path?.[1]
+  const { address_slug, category_slug } = query
   const { current_user, current_user_address, setLoginModal } = useContext(AppContext)
   const current_user_id = current_user?.id
   const [current_radius, setCurrentRadius] = React.useState(selected_address?.radius ?? null)
