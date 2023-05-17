@@ -2,7 +2,7 @@ import React from 'react'
 
 import Head from 'next/head'
 
-export default function Header({ title = "Encontre os melhores prestadores de serviços para a sua obra!", subtitle, description = "Encontre os melhores prestadores de serviços para a sua obra!" }) {
+export default function Header({ title = "Encontre os melhores prestadores de serviços para a sua obra!", subtitle, description = "Trabalhamos com prestadores de serviços qualificados e comprometidos. Descubra como podemos ajudá-lo a tornar seus projetos de construção realidade" }) {
   return (
     <Head>
       <title>

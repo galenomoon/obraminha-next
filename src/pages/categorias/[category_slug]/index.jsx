@@ -104,7 +104,7 @@ export default function Organizations({ category }) {
     <div className="flex w-full pb-20 min-h-screen h-fit flex-col overflow-hidden">
       <Header
         subtitle={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`}
-        description={`Encontre serviços de ${category?.name} ${address_on_slug ? `em ${address_on_slug}` : ""}`}
+        description={`Encontre serviços de ${category?.name} ${address_on_slug ? `em ${address_on_slug}` : ""} próximos a você | Obraminha - Encontre os melhores prestadores de serviços para a sua obra!`}
       />
       <Banner is_loaded={is_loaded_category} title={`${category?.name}${address_on_slug ? ` em ${address_on_slug}` : ""}`} link_to='/categorias' />
       <div className='w-full h-full flex flex-col items-center md:gap-8 sm:gap-2 px-2'>
