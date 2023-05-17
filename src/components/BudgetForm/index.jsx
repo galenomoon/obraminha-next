@@ -15,6 +15,7 @@ import { AppContext } from '@/pages/_app';
 import { BsFillFileEarmarkFill } from 'react-icons/bs';
 import { MdClose } from 'react-icons/md';
 import { toast } from 'react-hot-toast';
+import Image from 'next/image';
 
 export default function BudgetForm({ organization_id }) {
   const [title, setTitle] = React.useState('');
@@ -118,7 +119,7 @@ export default function BudgetForm({ organization_id }) {
                 {files.map((file, index) =>
                   <div key={index} className='duration-200 relative cursor-pointer md:w-[144px] group md:h-[144px] sm:w-[80px] sm:h-[80px] rounded-2xl'>
                     {file?.type?.includes('image') ?
-                      <img src={URL.createObjectURL(file)} alt={file.name} className='md:w-[144px] md:h-[144px] sm:w-[80px] sm:h-[80px] object-cover rounded-2xl' />
+                      <Image src={URL.createObjectURL(file)} alt={file.name} className='md:w-[144px] md:h-[144px] sm:w-[80px] sm:h-[80px] object-cover rounded-2xl' />
                       :
                       <div className='md:w-[144px] md:h-[144px] relative sm:w-[80px] sm:h-[80px] flex flex-col overflow-hidden items-center justify-center rounded-2xl bg-background-optional dark:bg-dark-background-light'>
                         <BsFillFileEarmarkFill className='text-typography-light dark:text-dark-typography-light sm:text-3xl md:text-6xl' />

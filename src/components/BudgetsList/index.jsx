@@ -16,6 +16,7 @@ import Skeleton from '@/components/Skeleton/index';
 import EmptyState from '@/components/EmptyState/index';
 import DownloadButton from '@/components/DownloadButton';
 import PaginationBox from '@/components/PaginationBox/index';
+import Image from 'next/image';
 
 export default function BudgetsList({ budgets, setBudgets, is_loaded: is_loaded_from_parent }) {
   const { query } = useRouter()
@@ -97,7 +98,7 @@ export default function BudgetsList({ budgets, setBudgets, is_loaded: is_loaded_
                   {budget?.attached_files?.map((file, index) =>
                     <div key={index} className='flex items-center gap-3 sm:w-full md:w-fit justify-between p-3 bg-background-light dark:bg-dark-background-base rounded-2xl'>
                       {is_image(file?.attached_file) ?
-                        <img id={index} alt='file' src={file.attached_file} className='md:w-[64px] md:h-[64px] sm:w-[64px] sm:h-[64px] object-cover rounded-2xl' />
+                        <Image id={index} alt='file' src={file.attached_file} className='md:w-[64px] md:h-[64px] sm:w-[64px] sm:h-[64px] object-cover rounded-2xl' />
                         :
                         <div className='md:w-[64px] md:h-[64px] sm:w-[64px] sm:h-[64px] object-cover rounded-2xl flex items-center justify-center bg-background-optional dark:bg-dark-background-light/40' >
                           <BsFillFileEarmarkFill className='text-typography-light dark:text-dark-typography-light sm:text-3xl md:text-3xl' />

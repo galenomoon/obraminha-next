@@ -20,6 +20,7 @@ import { AppContext } from '@/pages/_app';
 
 //helpers
 import { numberFormatter } from '../../helpers/numberFormatter';
+import Image from 'next/image';
 
 export default function PropertyForm({ getProperties, property_to_update }) {
   const [is_loaded, setIsLoaded] = React.useState(true)
@@ -213,7 +214,7 @@ export default function PropertyForm({ getProperties, property_to_update }) {
                   <div className='flex gap-2 w-fit'>
                     {images?.map((image, index) =>
                       <div key={index} className='duration-200 relative cursor-pointer md:w-[88px] group md:h-[88px] sm:w-[80px] sm:h-[80px] rounded-2xl'>
-                        <img src={image?.name ? URL.createObjectURL(image) : image?.image} alt={'property'} className='md:w-[80px] md:h-[80px] sm:w-[80px] sm:h-[80px] object-cover rounded-2xl' />
+                        <Image src={image?.name ? URL.createObjectURL(image) : image?.image} alt={'property'} className='md:w-[80px] md:h-[80px] sm:w-[80px] sm:h-[80px] object-cover rounded-2xl' />
                         <div className='flex absolute top-0 flex-col items-end justify-start sm:p-1 md:p-2 w-full h-full'>
                           <MdClose title='Excluir Arquivo' onClick={() => handleRemoveImage(index)} className='text-white sm:text-2xl md:text-2xl hover:scale-110 duration-100 cursor-pointer' />
                         </div>

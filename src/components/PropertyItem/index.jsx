@@ -17,6 +17,7 @@ import currencyFormatter from '../../helpers/currencyFormatter';
 import Slides from '@/components/Slides';
 import Modal from '@/components/Modal/index';
 import Button from '@/components/Button';
+import Image from 'next/image'
 
 export default function PropertyItem({ property, deleteProperty, openEditModal, openProposalsModal }) {
   const [image_index, setImageIndex] = useState(0)
@@ -30,7 +31,7 @@ export default function PropertyItem({ property, deleteProperty, openEditModal, 
           <div className='md:w-[180px] overflow-hidden md:h-[100px] sm:h-[126px] relative flex items-center sm:rounded-t-2xl'>
             {image_index !== 0 && <MdArrowBackIos color="#fff" onClick={() => setImageIndex(image_index - 1)} className='absolute text-2xl cursor-pointer hover:scale-125 duration-100 left-3 self-center drop-shadow-lg' />}
             {image_index !== property?.images?.length - 1 && <MdArrowForwardIos color="#fff" onClick={() => setImageIndex(image_index + 1)} className='absolute text-2xl cursor-pointer hover:scale-125 duration-100 right-3 self-center drop-shadow-lg' />}
-            <img
+            <Image
               onClick={() => setModalImage({ show: true, index: image_index, images: property?.images })}
               className='md:w-[180px] md:h-[100px] cursor-pointer object-cover sm:rounded-t-2xl md:rounded-xl border-background-optional dark:border-x-dark-background-light'
               src={property?.images?.[image_index]?.image}

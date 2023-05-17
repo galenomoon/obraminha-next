@@ -28,6 +28,7 @@ import currencyFormatter from '../../../helpers/currencyFormatter';
 
 //context
 import { AppContext } from '../../_app';
+import Image from 'next/image';
 
 export default function Property() {
   const { query } = useRouter()
@@ -116,7 +117,7 @@ export default function Property() {
                           Ver em tela cheia
                         </p>
                       </button>
-                      <img
+                      <Image
                         alt='property'
                         onError={e => e.target.src = not_found}
                         className='sm:w-full md:w-[40rem] h-[24rem] sm:rounded-none md:rounded-2xl object-cover'
@@ -141,7 +142,7 @@ export default function Property() {
                     {
                       is_loaded ?
                         property?.images?.map((image, index) => (
-                          <img
+                          <Image
                             onError={e => e.target.src = not_found}
                             key={index}
                             alt='property'

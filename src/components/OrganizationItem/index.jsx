@@ -16,6 +16,7 @@ import Modal from '@/components/Modal';
 import Button from '@/components/Button';
 import YoutubeEmbed from '@/components/YoutubeEmbed/';
 import OrganizationPictures from '@/components/OrganizationPictures/';
+import Image from 'next/image';
 
 export default function OrganizationItem({ organization, deleteOrganization, openEditModal, openInteractionsModal }) {
   const [modal, setModal] = useState({ delete_show: false, youtube_show: false, work_images_show: false })
@@ -25,7 +26,7 @@ export default function OrganizationItem({ organization, deleteOrganization, ope
       <div key={organization?.id} className='flex md:h-fit md:flex-row flex-col items-center justify-center rounded-2xl shadow-lg w-full dark:bg-dark-background-neutral bg-background-neutral' >
         <section className='flex md:flex-row sm:flex-col items-center justify-start w-full md:pl-2 sm:p-0 '>
           <div className='md:w-[200px] overflow-hidden md:h-[125px]  flex-shrink-0 sm:h-[126px] relative flex items-center sm:rounded-t-2xl'>
-            <img
+            <Image
               className='md:w-[200px] md:h-[125px]  flex-shrink-0 cursor-pointer object-cover sm:rounded-t-2xl md:rounded-xl border-background-optional dark:border-x-dark-background-light'
               src={organization?.profile_image?.image}
               alt="Organização"

@@ -16,6 +16,7 @@ import Slides from '../Slides/index';
 
 //assets
 import not_found from '../../assets/not_found.svg'
+import Image from 'next/image';
 
 export default function OrganizationBox({ organization }) {
   const { push: navigate } = useRouter()
@@ -36,7 +37,7 @@ export default function OrganizationBox({ organization }) {
               <MdArrowForwardIos color="#fff" onClick={() => setImageIndex(image_index + 1)} className={`${image_index !== organization?.work_images?.length - 1 ? "" : "invisible"} absolute text-4xl cursor-pointer hover:scale-125 duration-100 right-3 self-center drop-shadow-lg`} />
             </>
           }
-          <img
+          <Image
             alt={'Organization Portifolio'}
             onError={(e) => e.target.src = not_found}
             src={organization?.work_images?.[image_index]?.image || organization?.profile_image?.image || not_found}

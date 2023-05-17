@@ -10,6 +10,7 @@ import { MdOutlineAlternateEmail } from 'react-icons/md'
 //components
 import Input from '@/components/Input'
 import SeparatorLabel from '@/components/SeparatorLabel'
+import Image from 'next/image'
 
 export default function FirstStep({ organization, setOrganization, files, setFiles, profile_pic_error }) {
   const input_ref = React.useRef(null)
@@ -21,7 +22,7 @@ export default function FirstStep({ organization, setOrganization, files, setFil
         <div>
           <button type='button' onClick={() => input_ref.current.click()} className={`${profile_pic_error ? "border-red-600 border-[2px]" : ""} sm:m-1 md:m-0 sm:rounded-full md:rounded-none !w-[127px] relative cursor-pointer hover:opacity-80 duration-100 !h-[127px] dark:bg-dark-background-light bg-background-base  flex items-center justify-center`}>
             {files?.profile_image ?
-              <img src={typeof (files?.profile_image) === 'object' ? URL.createObjectURL(files?.profile_image) : files?.profile_image} alt="" className='sm:m-1 md:m-0 sm:rounded-full md:rounded-none !w-full !h-full object-cover' />
+              <Image src={typeof (files?.profile_image) === 'object' ? URL.createObjectURL(files?.profile_image) : files?.profile_image} alt="" className='sm:m-1 md:m-0 sm:rounded-full md:rounded-none !w-full !h-full object-cover' />
               :
               <BsImageAlt className="text-7xl text-typography-light dark:text-dark-typography-light" />
             }

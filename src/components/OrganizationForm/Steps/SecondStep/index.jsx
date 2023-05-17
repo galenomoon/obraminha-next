@@ -7,6 +7,7 @@ import SeparatorLabel from '@/components/SeparatorLabel/index';
 import { MdClose } from 'react-icons/md';
 import { HiPlus, HiPlusSm } from 'react-icons/hi';
 import { AiOutlineMinusCircle } from 'react-icons/ai';
+import Image from 'next/image';
 
 export default function SecondStep({ organization, setOrganization, files, setFiles, categories = [], is_update, setImagesToDelete, images_to_delete }) {
   const input_ref = React.useRef(null)
@@ -66,7 +67,7 @@ export default function SecondStep({ organization, setOrganization, files, setFi
             <div className='flex gap-2 w-fit'>
               {files?.images?.map((image, index) =>
                 <div key={index} className='duration-200 relative cursor-pointer md:w-[88px] group md:h-[88px] sm:w-[80px] sm:h-[80px] rounded-2xl'>
-                  <img src={image?.name ? URL.createObjectURL(image) : image?.image} alt={'property'} className='md:w-[80px] md:h-[80px] sm:w-[80px] sm:h-[80px] object-cover rounded-2xl' />
+                  <Image src={image?.name ? URL.createObjectURL(image) : image?.image} alt={'property'} className='md:w-[80px] md:h-[80px] sm:w-[80px] sm:h-[80px] object-cover rounded-2xl' />
                   <div className='flex absolute top-0 flex-col items-end justify-start sm:p-1 md:p-2 w-full h-full'>
                     <MdClose title='Excluir Arquivo' onClick={() => handleRemoveImage(index)} className='text-white sm:text-2xl md:text-2xl hover:scale-110 duration-100 cursor-pointer' />
                   </div>
