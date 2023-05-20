@@ -32,6 +32,7 @@ export default function PropertyItem({ property, deleteProperty, openEditModal, 
             {image_index !== 0 && <MdArrowBackIos color="#fff" onClick={() => setImageIndex(image_index - 1)} className='absolute text-2xl cursor-pointer hover:scale-125 duration-100 left-3 self-center drop-shadow-lg' />}
             {image_index !== property?.images?.length - 1 && <MdArrowForwardIos color="#fff" onClick={() => setImageIndex(image_index + 1)} className='absolute text-2xl cursor-pointer hover:scale-125 duration-100 right-3 self-center drop-shadow-lg' />}
             <Image
+              layout='fill'
               onClick={() => setModalImage({ show: true, index: image_index, images: property?.images })}
               className='md:w-[180px] md:h-[100px] cursor-pointer object-cover sm:rounded-t-2xl md:rounded-xl border-background-optional dark:border-x-dark-background-light'
               src={property?.images?.[image_index]?.image}

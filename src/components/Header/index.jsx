@@ -6,7 +6,7 @@ export default function Header({ title = "Encontre os melhores prestadores de se
   return (
     <Head>
       <title>
-        {subtitle ? `${subtitle === "undefined" ? title : subtitle} | Obraminha` : (title)}
+        {subtitle ? `${subtitle?.includes("undefined") ? title : subtitle} | Obraminha` : (title)}
       </title>
       <meta name="description" content={description} />
       <meta property="og:title" content={subtitle ? `${subtitle === "undefined" ? title : subtitle} | Obraminha` : (title)} />

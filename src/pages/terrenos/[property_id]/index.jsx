@@ -88,7 +88,10 @@ export default function Property() {
   return (
     is_not_found ? <NotFound title="Terreno não encontrado" subtitle="O terreno que você está procurando não existe ou foi removidao." /> :
       <>
-        <Header subtitle={property?.title} />
+        <Header
+          subtitle={`${property?.title} em ${property?.address?.city}`}
+          description={property?.description}
+        />
         <div className="flex min-h-screen self-center items-center md:px-10 sm:px-0 sm:w-full py-10 gap-8 h-fit flex-col overflow-hidden">
           <section className='flex md:flex-row sm:flex-col w-full sm:max-w-auto md:max-w-[1300px] gap-5 shadow-[0_0px_34px_0px_rgba(25,25,25,0.088)] sm:py-4 md:p-10 bg-background-neutral dark:bg-dark-background-neutral sm:rounded-none md:rounded-3xl'>
             <div className='w-full flex flex-col'>
@@ -118,6 +121,8 @@ export default function Property() {
                         </p>
                       </button>
                       <Image
+                        width={400}
+                        height={240}
                         alt='property'
                         onError={e => e.target.src = not_found}
                         className='sm:w-full md:w-[40rem] h-[24rem] sm:rounded-none md:rounded-2xl object-cover'
@@ -143,6 +148,8 @@ export default function Property() {
                       is_loaded ?
                         property?.images?.map((image, index) => (
                           <Image
+                            width={82}
+                            height={82}
                             onError={e => e.target.src = not_found}
                             key={index}
                             alt='property'
