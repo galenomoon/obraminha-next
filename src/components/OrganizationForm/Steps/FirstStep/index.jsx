@@ -22,7 +22,13 @@ export default function FirstStep({ organization, setOrganization, files, setFil
         <div>
           <button type='button' onClick={() => input_ref.current.click()} className={`${profile_pic_error ? "border-red-600 border-[2px]" : ""} sm:m-1 md:m-0 sm:rounded-full md:rounded-none !w-[127px] relative cursor-pointer hover:opacity-80 duration-100 !h-[127px] dark:bg-dark-background-light bg-background-base  flex items-center justify-center`}>
             {files?.profile_image ?
-              <Image src={typeof (files?.profile_image) === 'object' ? URL.createObjectURL(files?.profile_image) : files?.profile_image} alt="" className='sm:m-1 md:m-0 sm:rounded-full md:rounded-none !w-full !h-full object-cover' />
+              <Image
+                alt=""
+                width={127}
+                height={127}
+                src={typeof (files?.profile_image) === 'object' ? URL.createObjectURL(files?.profile_image) : files?.profile_image}
+                className='sm:m-1 md:m-0 sm:rounded-full md:rounded-none !w-full !h-full object-cover'
+              />
               :
               <BsImageAlt className="text-7xl text-typography-light dark:text-dark-typography-light" />
             }

@@ -27,6 +27,7 @@ export default function OrganizationItem({ organization, deleteOrganization, ope
         <section className='flex md:flex-row sm:flex-col items-center justify-start w-full md:pl-2 sm:p-0 '>
           <div className='md:w-[200px] overflow-hidden md:h-[125px]  flex-shrink-0 sm:h-[126px] relative flex items-center sm:rounded-t-2xl'>
             <Image
+              layout='fill'
               className='md:w-[200px] md:h-[125px]  flex-shrink-0 cursor-pointer object-cover sm:rounded-t-2xl md:rounded-xl border-background-optional dark:border-x-dark-background-light'
               src={organization?.profile_image?.image}
               alt="Organização"

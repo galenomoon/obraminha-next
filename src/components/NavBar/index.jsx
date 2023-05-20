@@ -130,7 +130,7 @@ export default function Navbar() {
       </div>
       {
         isMenuOpen &&
-        <div className='md:hidden flex flex-col overflow-scroll py-8 items-center animate-slide-in-r sm:fixed z-[999] w-full h-screen bg-background-base dark:bg-dark-background-neutral text-typography-base dark:text-dark-typography-base'>
+        <div className='md:hidden flex flex-col overflow-scroll py-8 items-center animate-slide-in-r sm:fixed top-0 z-[999] w-full h-screen bg-background-base dark:bg-dark-background-neutral text-typography-base dark:text-dark-typography-base'>
           <div className='flex items-center justify-between w-[80%]'>
             <Logo className='w-[220px]' />
             <MdClose size={45} onClick={() => setIsMenuOpen(false)} className='cursor-pointer text-2xl' />

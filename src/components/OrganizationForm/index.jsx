@@ -166,7 +166,7 @@ export default function OrganizationForm({ organization_to_update, close = () =>
   }
 
   return (
-    <section className='flex flex-col sm:w-full md:w-fit gap-3 justify-between'>
+    <section className='flex flex-col sm:w-full md:w-fit gap-3 justify-between md:overflow-visible sm:overflow-auto scrollbar-hide md:p-0 sm:py-5'>
       <div className='flex flex-col justify-center items-center'>
         <div className='flex flex-col items-center justify-center'>
           <p className='text-3xl font-semibold'>
