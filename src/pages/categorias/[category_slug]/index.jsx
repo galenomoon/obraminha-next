@@ -20,11 +20,6 @@ import searching_man from '../../../assets/searching_man.svg'
 //hooks
 import useDebounce from '../../../hooks/useDebounce';
 
-export async function getStaticProps({ params }) {
-  if (!params || !params.category_slug) return { props: {} }
-  const { data: category } = await api_client.get(`/categories/${params.category_slug}`)
-  return { props: { category } }
-}
 
 export async function getStaticPaths() {
   const { data: categories } = await api_client.get('/categories/main/') || []
@@ -32,10 +27,11 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export default function Organizations({ category }) {
+export default function Organizations() {
   const { query } = useRouter()
   const { category_slug } = query
   const [search, setSearch] = useState('');
+  const [category, setCategory] = useState();
   const [search_address, setSearchAddress] = useState('');
   const [address_on_slug, setAddressOnSlug] = useState(false);
   const [organizations, setOrganizations] = useState()
@@ -64,13 +60,28 @@ export default function Organizations({ category }) {
     }
   }, [category]);
 
+  useEffect(() => {
+    const fetchCategory = async () => {
+      try {
+        const { data: category_results } = await api_client.get(`/categories/${category_slug}`);
+        setCategory(category_results);
+      } finally {
+        setLoadedCategory(true)
+      }
+    };
+
+    if (category_slug) {
+      fetchCategory();
+    }
+  }, [category_slug]);
+
   async function getOrganizationByAddress(organization_name) {
-    if (!category?.slug) return
+    if (!category_slug) return
 
     let payload = {
       ...search_address,
       district: "",
-      category_slug: category?.slug,
+      category_slug,
       radius: parseInt(radius) ? parseInt(radius) * 100 : 50 * 100,
       organization_name
     }
