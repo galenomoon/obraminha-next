@@ -20,9 +20,9 @@ import searching_man from '../../../assets/searching_man.svg'
 //hooks
 import useDebounce from '../../../hooks/useDebounce';
 
-export async function getStaticProps({ params }) {
-  if (!params || !params?.category_slug) return { props: {} }
-  const { data: category } = await api_client.get(`/categories/${params.category_slug}`)
+export async function getStaticProps({params}) {
+  if (!params || !params?.category_slug) return { props: {}}
+  const { data: category } = await api_client.get(`/categories/${params.category_slug}/`)
   return { props: { category } }
 }
 
@@ -32,11 +32,11 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export default function Organizations() {
+export default function Organizations({ category: category_prop }) {
   const { query } = useRouter()
   const { category_slug } = query
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState(category_prop);
   const [search_address, setSearchAddress] = useState('');
   const [address_on_slug, setAddressOnSlug] = useState(false);
   const [organizations, setOrganizations] = useState()
