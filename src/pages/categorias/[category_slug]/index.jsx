@@ -20,6 +20,11 @@ import searching_man from '../../../assets/searching_man.svg'
 //hooks
 import useDebounce from '../../../hooks/useDebounce';
 
+export async function getStaticProps({ params }) {
+  if (!params || !params?.category_slug) return { props: {} }
+  const { data: category } = await api_client.get(`/categories/${params.category_slug}`)
+  return { props: { category } }
+}
 
 export async function getStaticPaths() {
   const { data: categories } = await api_client.get('/categories/main/') || []
