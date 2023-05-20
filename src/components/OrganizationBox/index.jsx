@@ -38,6 +38,8 @@ export default function OrganizationBox({ organization }) {
             </>
           }
           <Image
+            width={400}
+            height={160}
             alt={'Organization Portifolio'}
             onError={(e) => e.target.src = not_found}
             src={organization?.work_images?.[image_index]?.image || organization?.profile_image?.image || not_found}

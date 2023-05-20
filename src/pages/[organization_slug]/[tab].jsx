@@ -8,6 +8,7 @@ import api_client from '@/config/api_client'
 import not_found from '../../assets/not_found.svg'
 
 //components
+import Image from 'next/image'
 import Banner from '@/components/Banner'
 import Header from '@/components/Header'
 import Skeleton from '@/components/Skeleton'
@@ -19,7 +20,6 @@ import OrganizationPictures from '@/components/OrganizationPictures'
 import OrganizationQuestions from '@/components/OrganizationQuestions'
 import OrganizationDetailBox from '@/components/OrganizationDetailBox'
 import OrganizationTabNavigation from '@/components/OrganizationTabNavigation'
-import Image from 'next/image'
 
 export default function Organization() {
   const { query } = useRouter()
@@ -91,6 +91,8 @@ export default function Organization() {
           <div className='flex relative w-full sm:items-center sm:justify-center'>
             <Skeleton className="absolute md:left-16 sm:-top-[70px] sm:w-[150px] md:w-[250px] sm:h-[150px] md:h-[250px] object-cover rounded-full" conditional={is_loaded}>
               <Image
+                width={250}
+                height={250}
                 onError={e => e.target.src = not_found}
                 src={organization?.profile_image?.image}
                 alt="organization"
